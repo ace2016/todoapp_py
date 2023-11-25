@@ -7,7 +7,6 @@
 }
 
 body{
-    /* background-color: #a459f4; */
     background-color: #a459f4;
     height: 100vh;
     width: 100%;
@@ -17,7 +16,7 @@ body{
 }
 
 .todo-list-item .btn-container a{ 
-    color: white
+    color: white;
 }
 
 .todo-container{

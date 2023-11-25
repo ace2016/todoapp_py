@@ -2,6 +2,9 @@
 
 {% block content %}
 
+
+  <h1 style="color: #fff; text-align: center; margin: 10px; border: 1px solid #fff">TODO LIST APP</h1>
+
 <div class="todo-container">
   <div class="todo-search">
     <form action="" method="POST">
@@ -26,12 +29,12 @@
 
       <div class="btn-container">
         <div class="edit">
-          <a href="">
+          <a href="{% url 'task-update' task.id %}">
             <i class="fa-solid fa-pen-to-square"></i>
           </a>
         </div>
         <div class="del">
-          <a href="">
+          <a href="{% url 'task-delete' task.id %}">
             <i class="fa-solid fa-trash-can"></i>
           </a>
         </div>

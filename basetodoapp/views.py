@@ -3,6 +3,8 @@ from .models import Task
 from .forms import TaskForm
 
 # Create your views here.
+
+#To add the Todo items to the database
 def task_list(request):
 	tasks = Task.objects.all()
 
@@ -15,13 +17,28 @@ def task_list(request):
 			return redirect("task-list")
 
 	context = {"tasks": tasks, "form": form}
-	
 	return render(request, "task_list.html", context)
 
-def task_update(request):
-	context = {}
+#To retrieve and update the todo item
+def task_update(request, pk):
+	task = Task.objects.get(id=pk)
+	form = TaskForm(instance=task)
+	if request.method == 'POST':
+		form = TaskForm(request.POST, instance=task)
+		if form.is_valid():
+			form.save()
+			return redirect("task-list")
+		
+	context = {"form": form}
 	return render(request, "task_list.html", context)
 
-def task_delete(request):
-	context = {}
+
+#to delete the todo item
+def task_delete(request, pk):
+	task = Task.objects.get(id=pk)
+	if request.method == 'POST':
+		task.delete()
+		return redirect("task-list")
+
+	context = {"task": task}
 	return render(request, "task_delete.html", context)
